@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';import ToolUI from '../../components/ToolUI.astro';import {tools} from '../../lib/tools';
+export function getStaticPaths(){return tools.map(tool=>({params:{slug:tool.slug},props:{tool}}));}
+const {tool}=Astro.props;
+---
+<Base title={tool.heading} description={tool.description}><section class="max-w-4xl mx-auto px-5 pt-14"><a href="/#tools" class="text-indigo-700 text-sm font-semibold">← All tools</a><h1 class="text-4xl md:text-5xl font-black mt-5">{tool.heading}</h1><p class="text-lg text-slate-600 mt-4">{tool.description}</p><div class="mt-9"><ToolUI slug={tool.slug}/></div><div class="mt-12 space-y-5"><h2 class="text-2xl font-bold">How to use this tool</h2><p>Enter your settings in the form above, then generate or download your result. You can adjust the settings and try again.</p><h2 class="text-2xl font-bold">Your privacy</h2><p>This tool processes inputs in your browser. We do not provide an upload endpoint for your images, QR text, or invoice details. Avoid including sensitive information in QR codes you share publicly.</p><h2 class="text-2xl font-bold">Helpful tips</h2><p>Check your output before sharing it. Image formats, file size and color appearance may vary depending on your browser and source file. Generated invoices are templates, not tax or legal advice.</p></div></section></Base>
